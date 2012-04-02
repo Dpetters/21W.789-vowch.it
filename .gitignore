@@ -1,32 +1,46 @@
-.git
-*.class
-.classpath
-*.pyc
-*.pyo
-*.db
-*.db-journal
-index
-.tmp*
-.project
-.pydevproject
-.settings
-/media
-/local_static
-settings_local.py
-settings_prod.py
-apache/django.wsgi
-*.DS_Store
-*.psd
-*.swp
-*.log
-*.log.*
-apache-solr-3.5.0/solr/data/
-apache-solr-3.5.0/example/work/
-apache-solr-3.5.0/example/nohup.out
-apache/egg-cache/
-static/cache/
-static/scripts/
-static/admin/
-static/fonts/
-static/styles/
+# git
+.git/
 
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
