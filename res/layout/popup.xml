@@ -10,6 +10,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Upload Evidence"
+            android:background="#000000"
+            android:textColor="#FFFFFF"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <ListView
