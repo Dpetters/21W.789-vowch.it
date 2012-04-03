@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ public class ProfileActivity extends ListActivity {
     protected LinearLayout layout;
     protected boolean click = true;
     protected TextView tv;
-	
+    private static final int CAMERA_PIC_REQUEST = 2500;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,11 +170,8 @@ public class ProfileActivity extends ListActivity {
     	final Context context = v.getContext();
     	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
     	
-    	View popupView = inflater.inflate(R.layout.popup, null, false);
-    	//popupView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-    	
-    	//popup = new PopupWindow(popupView, popupView.getMeasuredHeight(), popupView.getMeasuredWidth());
-    	popup = new PopupWindow(popupView, 350, 560, true);
+    	View giveEvidencePopupView = inflater.inflate(R.layout.give_evidence_popup, null, false);
+    	popup = new PopupWindow(giveEvidencePopupView, 350, 560, true);
     	
     	popup.setTouchable(true);
     	popup.setFocusable(true);
@@ -190,8 +188,15 @@ public class ProfileActivity extends ListActivity {
             }
     		
         });
-    	popup.showAtLocation(popupView, Gravity.CENTER, 0, 0); 
-
+    	ImageButton capturePictureButton = (ImageButton) giveEvidencePopupView.findViewById(R.id.capture_picture);
+    	capturePictureButton.setOnClickListener(new OnClickListener(){
+    		public void onClick(View v){
+    			Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);  
+                startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST); 
+    		}
+    	});
+    	
+    	popup.showAtLocation(giveEvidencePopupView, Gravity.CENTER, 0, 0); 
     }
     
     public void showAbout(){

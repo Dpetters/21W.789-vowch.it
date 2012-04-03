@@ -11,12 +11,11 @@
             android:layout_height="wrap_content"
             android:text="Upload Evidence"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <ListView
-            android:id="@+id/listView1"
-            android:layout_width="fill_parent"
-            android:layout_height="433dp"
-            android:entries="@array/options" >
-        </ListView>
-
+	
+	    <ImageButton
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/capture_picture"
+	        android:text="Campute Picture"/>
+	    
     </LinearLayout>
