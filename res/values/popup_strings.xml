@@ -1,0 +1,10 @@
+
+    <resources>
+        <string-array name="options">
+            <item>Upload</item>
+            <item>Capture Video</item>
+            <item>Capture Image</item>
+            <item>Log GPS Location</item>
+            <item>Upload Image or Video</item>
+        </string-array>
+    </resources>

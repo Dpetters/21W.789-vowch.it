@@ -2,14 +2,19 @@ package it.vowch.android;
 
 import android.app.ActionBar;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -29,27 +34,25 @@ public class ProfileActivity extends ListActivity {
         setContentView(R.layout.profile);
         
         testButton = (Button)findViewById(R.id.testButton);
-        popup = new PopupWindow(this);
         tv = (TextView)findViewById(R.id.reputation_level);
+        
         
         testButton.setOnClickListener(new OnClickListener(){
         	@Override
         	public void onClick(View v){
         		if (click) {
-        	         popup.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-        	         popup.update(50, 50, 300, 80);
-        	         click = false;
+        	         displayPopup(v);
         	        } else {
         	         popup.dismiss();
         	         click = true;
         	        }
         	}
-
-
         });
 
         ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if(actionBar != null){
+        	actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -81,6 +84,36 @@ public class ProfileActivity extends ListActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    
+    @SuppressWarnings("deprecation")
+	public void displayPopup(View v){
+    	final Context context = v.getContext();
+    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
+    	
+    	View popupView = inflater.inflate(R.layout.popup, null, false);
+    	//popupView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+    	
+    	//popup = new PopupWindow(popupView, popupView.getMeasuredHeight(), popupView.getMeasuredWidth());
+    	popup = new PopupWindow(popupView, 350, 560, true);
+    	
+    	popup.setTouchable(true);
+    	popup.setFocusable(true);
+    	popup.setBackgroundDrawable(new BitmapDrawable());
+    	popup.setOutsideTouchable(true);
+    	
+    	popup.setTouchInterceptor(new OnTouchListener() {
+    		public boolean onTouch(View v, MotionEvent event){
+                if(event.getAction() == MotionEvent.ACTION_OUTSIDE){
+                    popup.dismiss();
+                    return true;
+                }
+                return false;
+            }
+    		
+        });
+    	popup.showAtLocation(popupView, Gravity.CENTER, 0, 0); 
+
     }
     
     public void showAbout(){
