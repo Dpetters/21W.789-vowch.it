@@ -188,6 +188,7 @@ public class ProfileActivity extends ListActivity {
             }
     		
         });
+
     	ImageButton capturePictureButton = (ImageButton) giveEvidencePopupView.findViewById(R.id.capture_picture);
     	capturePictureButton.setOnClickListener(new OnClickListener(){
     		public void onClick(View v){
