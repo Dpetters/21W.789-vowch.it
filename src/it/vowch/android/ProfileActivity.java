@@ -11,13 +11,13 @@ public class ProfileActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vow_manager);
+        setContentView(R.layout.profile);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	MenuInflater inflater = getMenuInflater();
-    	inflater.inflate(R.menu.option, menu);
+    	inflater.inflate(R.menu.profile, menu);
         return(super.onCreateOptionsMenu(menu));
     }
     
@@ -25,8 +25,8 @@ public class ProfileActivity extends ListActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-	        case R.id.info:
-                showInfo();
+	        case R.id.about:
+                showAbout();
                 return true;
             case R.id.logout:
                 logout();
@@ -39,7 +39,7 @@ public class ProfileActivity extends ListActivity {
         }
     }
     
-    public void showInfo(){
+    public void showAbout(){
     	
     }
     

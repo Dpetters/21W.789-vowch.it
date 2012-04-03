@@ -1,6 +1,5 @@
 package it.vowch.android;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,7 +17,7 @@ public class StreamActivity extends ListActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	MenuInflater inflater = getMenuInflater();
-    	inflater.inflate(R.menu.option, menu);
+    	inflater.inflate(R.menu.stream, menu);
         return(super.onCreateOptionsMenu(menu));
     }
     
@@ -26,7 +25,7 @@ public class StreamActivity extends ListActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.info:
+            case R.id.about:
                 showInfo();
                 return true;
             case R.id.logout:

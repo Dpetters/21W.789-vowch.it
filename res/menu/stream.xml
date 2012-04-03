@@ -5,5 +5,13 @@
     android:icon="@drawable/ic_menu_btn_add"
     android:showAsAction="ifRoom|withText"  />
 
-    <include src="@layout/menu_items"></include>
+<item android:id="@+id/preferences"
+    android:title="Preferences"
+    android:icon="@drawable/ic_menu_preferences" />
+<item android:id="@+id/about"
+    android:title="About"
+    android:icon="@drawable/ic_menu_info_details" />
+<item android:id="@+id/logout"
+    android:title="Log Out"
+    android:icon="@drawable/ic_lock_power_off" />
 </menu>
