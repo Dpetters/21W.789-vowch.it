@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:stretchColumns="*"
+	android:background="#FAFAFA">
+	<TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="80dp">
+		<Button
+		    android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+		    android:text="Make a Vow"
+		    android:gravity="center_horizontal"
+		    android:background="#FAFAFA"
+		    android:onClick="viewNewVowActivity">
+		</Button>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Stream"
+            android:gravity="center_horizontal"
+            android:background="#FAFAFA"
+            android:onClick="viewStreamActivity">
+        </Button>
+	</TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="80dp">
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Profile"
+            android:gravity="center_horizontal"
+            android:background="#FAFAFA"
+            android:onClick="viewProfileActivity">
+        </Button>
+    </TableRow>
+</TableLayout>

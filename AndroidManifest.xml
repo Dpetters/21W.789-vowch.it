@@ -4,23 +4,37 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="14" />
-
+    <uses-sdk android:minSdkVersion="11" />
+    <supports-screens android:anyDensity="true"
+                      android:largeScreens="true"
+                      android:normalScreens="true"
+                      android:smallScreens="true" />
+    
     <application
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" >
+        android:label="@string/app_name"
+        uiOptions="splitActionBarWhenNarrow">
         <activity
-            android:name="it.vowch.android.CommunityWallActivity"
-            android:label="Upload Evidence" >
+            android:name="it.vowch.android.HomeActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="it.vowch.android.StreamActivity"
+            android:label="Stream" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="it.vowch.android.ProfileActivity"
+            android:label="Profile" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
-	<supports-screens android:anyDensity="true"
-	                  android:largeScreens="true"
-	                  android:normalScreens="true"
-	                  android:smallScreens="true" />
 </manifest>

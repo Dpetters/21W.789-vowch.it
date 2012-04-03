@@ -1,24 +1,23 @@
 package it.vowch.android;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class VowManagerActivity extends Activity {
+public class ProfileActivity extends ListActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vow_manager);
+        setContentView(R.layout.profile);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	MenuInflater inflater = getMenuInflater();
-    	inflater.inflate(R.menu.option, menu);
+    	inflater.inflate(R.menu.profile, menu);
         return(super.onCreateOptionsMenu(menu));
     }
     
@@ -26,14 +25,8 @@ public class VowManagerActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-	        case R.id.stream:
-	            new Intent(this, CommunityWallActivity.class);
-	            return true;
-	        case R.id.make_a_vow:
-	            showInfo();
-	            return true;
-	        case R.id.info:
-                showInfo();
+	        case R.id.about:
+                showAbout();
                 return true;
             case R.id.logout:
                 logout();
@@ -46,7 +39,7 @@ public class VowManagerActivity extends Activity {
         }
     }
     
-    public void showInfo(){
+    public void showAbout(){
     	
     }
     
