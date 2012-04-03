@@ -1,5 +1,10 @@
 package it.vowch.android;
 
+import it.vowch.android.adapters.GoalAdapter;
+import it.vowch.android.data.Goal;
+
+import com.google.gson.Gson;
+
 import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -9,13 +14,95 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class ProfileActivity extends ListActivity {
-    /** Called when the activity is first created. */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String json = "["
+                        + "{'title' : 'Run 2 miles',"
+                        + "'schedule' : 'Every Monday, Thursday for 2 weeks',"
+                        + "'maxOccurences' : '4',"
+                        + "'occurences' : '3',"
+                        + "'grade' : 'A+',"
+                        + "'successRate' : '100',"
+                        + "'minutesLeft' : '45'"
+                        + "}"
+                        + ","
+                        + "{'title' : 'Have a no-bro day',"
+                        + "'schedule' : 'Every week for 8 months',"
+                        + "'maxOccurences' : '35',"
+                        + "'occurences' : '5',"
+                        + "'grade' : 'B+',"
+                        + "'successRate' : '89',"
+                        + "'minutesLeft' : '1000'"
+                        + "}"
+                        + ","
+                        + "{'title' : 'Do 10 push-ups before going to bed',"
+                        + "'schedule' : 'Every day for a year',"
+                        + "'maxOccurences' : '365',"
+                        + "'occurences' : '167',"
+                        + "'grade' : 'A',"
+                        + "'successRate' : '93',"
+                        + "'minutesLeft' : '456'"
+                        + "}"
+                        + ","
+                        + "{'title' : 'Have a no-bro day',"
+                        + "'schedule' : 'Every week for 8 months',"
+                        + "'maxOccurences' : '35',"
+                        + "'occurences' : '5',"
+                        + "'grade' : 'B+',"
+                        + "'successRate' : '89',"
+                        + "'minutesLeft' : '1000'"
+                        + "}"
+                        + ","
+                        + "{'title' : 'Do 10 push-ups before going to bed',"
+                        + "'schedule' : 'Every day for a year',"
+                        + "'maxOccurences' : '365',"
+                        + "'occurences' : '167',"
+                        + "'grade' : 'A',"
+                        + "'successRate' : '93',"
+                        + "'minutesLeft' : '456'"
+                        + "}"
+                        + ","
+                        + "{'title' : 'Run 2 miles',"
+                        + "'schedule' : 'Every Monday, Thursday for 2 weeks',"
+                        + "'maxOccurences' : '4',"
+                        + "'occurences' : '3',"
+                        + "'grade' : 'A+',"
+                        + "'successRate' : '100',"
+                        + "'minutesLeft' : '45'"
+                        + "}"
+                        + ","
+                        + "{'title' : 'Have a no-bro day',"
+                        + "'schedule' : 'Every week for 8 months',"
+                        + "'maxOccurences' : '35',"
+                        + "'occurences' : '5',"
+                        + "'grade' : 'B+',"
+                        + "'successRate' : '89',"
+                        + "'minutesLeft' : '1000'"
+                        + "}"
+                        + ","
+                        + "{'title' : 'Do 10 push-ups before going to bed',"
+                        + "'schedule' : 'Every day for a year',"
+                        + "'maxOccurences' : '365',"
+                        + "'occurences' : '167',"
+                        + "'grade' : 'A',"
+                        + "'successRate' : '93',"
+                        + "'minutesLeft' : '456'"
+                        + "}"
+                        + "]";
+        
+        Goal[] goals = new Gson().fromJson(json, Goal[].class);
+        
+    	/** Called when the activity is first created. */
         setContentView(R.layout.profile);
         ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if(actionBar != null){
+        	actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        
+        
+        setListAdapter(new GoalAdapter(this, goals));
     }
 
     @Override
