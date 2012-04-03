@@ -27,7 +27,18 @@ public class GoalAdapter extends ArrayAdapter<Goal> {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.goal, parent, false);
-
+		/*
+		Button giveEvidenceButton = (Button) rowView.findViewById(R.id.give_evidence);
+		giveEvidenceButton.setOnClickListener(new OnClickListener() {
+			 @Override
+			 public void onClick(View view) {
+			  String url = (String) view.getTag();
+			  Intent myIntent = new Intent(view.getContext(), WebView_Activity.class);
+			  myIntent.putExtra("url", url);
+			  view.getContext().startActivity(myIntent);
+			 }
+			});
+		*/
 		Goal goal = values[position];
 		
 		TextView titleView = (TextView) rowView.findViewById(R.id.title);
