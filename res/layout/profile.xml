@@ -63,6 +63,12 @@
             android:textSize="30dp"
             android:layout_weight="100" />
 
+        <Button
+            android:id="@+id/testButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Dialog" />
+
         </LinearLayout>
         <ListView
 	        android:id="@+id/list"
