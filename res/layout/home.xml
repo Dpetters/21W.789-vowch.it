@@ -15,6 +15,7 @@
 		    android:text="Make a Vow"
 		    android:gravity="center_horizontal"
 		    android:background="#FAFAFA"
+		    android:textColor="#666"
 		    android:onClick="viewNewVowActivity">
 		</Button>
         <Button
@@ -23,6 +24,7 @@
             android:text="Stream"
             android:gravity="center_horizontal"
             android:background="#FAFAFA"
+            android:textColor="#666"
             android:onClick="viewStreamActivity">
         </Button>
 	</TableRow>
@@ -36,6 +38,7 @@
             android:text="Profile"
             android:gravity="center_horizontal"
             android:background="#FAFAFA"
+            android:textColor="#666"
             android:onClick="viewProfileActivity">
         </Button>
     </TableRow>
