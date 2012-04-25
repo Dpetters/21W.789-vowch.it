@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:id="@+id/new_goal"
-    android:title="New Goal"
-    android:icon="@drawable/ic_menu_btn_add"
-    android:showAsAction="ifRoom|withText"  />
-
-<item android:id="@+id/preferences"
-    android:title="Preferences"
-    android:icon="@drawable/ic_menu_preferences" />
-<item android:id="@+id/about"
-    android:title="About"
-    android:icon="@drawable/ic_menu_info_details" />
-<item android:id="@+id/logout"
-    android:title="Log Out"
-    android:icon="@drawable/ic_lock_power_off" />
+    <item android:id="@+id/new_goal"
+        android:title="New Goal"
+        android:showAsAction="ifRoom|withText"  />
+	<item android:id="@+id/preferences"
+	    android:title="Preferences" />
+	<item android:id="@+id/about"
+	    android:title="About" />
+	<item android:id="@+id/logout"
+	    android:title="Log Out" />
 </menu>

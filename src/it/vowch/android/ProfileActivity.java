@@ -6,6 +6,7 @@ import it.vowch.android.data.Goal;
 import com.google.gson.Gson;
 
 import android.app.ActionBar;
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +22,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -33,7 +33,9 @@ public class ProfileActivity extends ListActivity {
     protected LinearLayout layout;
     protected boolean click = true;
     protected TextView tv;
-    private static final int CAMERA_PIC_REQUEST = 2500;
+    private static final int CAMERA_PIC_REQUEST = 1;
+    private static final int CAMERA_VIDEO_REQUEST = 2;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,14 +126,17 @@ public class ProfileActivity extends ListActivity {
         setListAdapter(new GoalAdapter(this, goals));
     }
 
-    public void showEvidencePopup(View view){
+    public void showEvidenceDialog(View view){
         popup = new PopupWindow(this);
 		if (click) {
-	         displayPopup(view);
-	        } else {
-	         popup.dismiss();
-	         click = true;
-	        }
+	    	Dialog dialog = new Dialog(ProfileActivity.this);
+	    	dialog.setContentView(R.layout.give_evidence_dialog);
+	    	dialog.setTitle("Upload Evidence");
+	    	dialog.show();
+        } else {
+        	popup.dismiss();
+        	click = true;
+        }
     }
     
     @Override
@@ -165,40 +170,23 @@ public class ProfileActivity extends ListActivity {
         }
     }
     
-    @SuppressWarnings("deprecation")
-	public void displayPopup(View v){
-    	final Context context = v.getContext();
-    	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
-    	
-    	View giveEvidencePopupView = inflater.inflate(R.layout.give_evidence_popup, null, false);
-    	popup = new PopupWindow(giveEvidencePopupView, 350, 560, true);
-    	
-    	popup.setTouchable(true);
-    	popup.setFocusable(true);
-    	popup.setBackgroundDrawable(new BitmapDrawable());
-    	popup.setOutsideTouchable(true);
-    	
-    	popup.setTouchInterceptor(new OnTouchListener() {
-    		public boolean onTouch(View v, MotionEvent event){
-                if(event.getAction() == MotionEvent.ACTION_OUTSIDE){
-                    popup.dismiss();
-                    return true;
-                }
-                return false;
-            }
-    		
-        });
+	/*
+	Button capturePictureButton = (Button) giveEvidencePopupView.findViewById(R.id.capture_picture);
+	capturePictureButton.setOnClickListener(new OnClickListener(){
+		public void onClick(View v){
+			Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);  
+            startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST); 
+		}
+	});
 
-    	ImageButton capturePictureButton = (ImageButton) giveEvidencePopupView.findViewById(R.id.capture_picture);
-    	capturePictureButton.setOnClickListener(new OnClickListener(){
-    		public void onClick(View v){
-    			Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);  
-                startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST); 
-    		}
-    	});
-    	
-    	popup.showAtLocation(giveEvidencePopupView, Gravity.CENTER, 0, 0); 
-    }
+	Button captureVideoButton = (Button) giveEvidencePopupView.findViewById(R.id.capture_video);
+	captureVideoButton.setOnClickListener(new OnClickListener(){
+		public void onClick(View v){
+			Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_VIDEO_CAPTURE);  
+            startActivityForResult(cameraIntent, CAMERA_VIDEO_REQUEST); 
+		}
+	});
+	*/
     
     public void showAbout(){
     	

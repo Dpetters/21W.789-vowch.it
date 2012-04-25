@@ -22,7 +22,7 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:orientation="horizontal">
-	            
+
 	            <TextView
 	                android:id="@+id/first_name"
 	                android:layout_width="fill_parent"
@@ -30,8 +30,7 @@
 	                android:paddingRight="3dp"
 	                android:text="Dmitrij"
 	                android:textSize="24dp" />
-            
-	            <TextView
+            	            <TextView
 	                android:id="@+id/last_name"
 	                android:layout_width="fill_parent"
 	                android:layout_height="fill_parent"
@@ -51,7 +50,7 @@
                     android:paddingTop="3dp"
                     android:text="Reputation Level:"
                     android:textSize="12dp" />
-            
+
                 <TextView
                     android:id="@+id/reputation_level"
                     android:layout_width="fill_parent"
@@ -68,7 +67,7 @@
             android:layout_height="wrap_content"
 	        android:orientation="vertical"
 	        android:layout_weight="1.0">
-	        
+	        
 	        <ProgressBar
 	            style="@android:style/Widget.ProgressBar.Horizontal"
 	            android:layout_width="fill_parent"
@@ -77,8 +76,7 @@
 	            android:paddingLeft="10dp"
 	            android:paddingTop="12dp"
 	            android:progress="35" />
-
-	        <TextView
+	        <TextView
 	            android:id="@+id/reputation_progress_bar_label"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"

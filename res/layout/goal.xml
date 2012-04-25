@@ -80,7 +80,7 @@
             android:id="@+id/give_evidence"
 	        android:layout_height="wrap_content"
 	        android:layout_width="wrap_content"
-	        android:onClick="showEvidencePopup"
+	        android:onClick="showEvidenceDialog"
 	        android:text="Give Evidence"/>
 	    <TextView
             android:id="@+id/time_left"

@@ -1,0 +1,104 @@
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+        
+        <Button
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/choose_picture"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="14dp"
+	        android:text="Choose Picture"
+	        android:gravity="left"
+	        android:background="#FFFFFF"/>
+        <View
+            android:background="#CCC"
+            android:layout_height="1dp"
+            android:layout_width="fill_parent">
+        </View>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/capture_picture"
+            android:text="Capture Picture"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="14dp"
+            android:gravity="left"
+            android:background="#FFFFFF"/>
+        <View
+            android:background="#CCC"
+            android:layout_height="1dp"
+            android:layout_width="fill_parent">
+        </View>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/choose_video"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="14dp"
+            android:text="Choose Video"
+            android:gravity="left"
+            android:background="#FFFFFF"/>
+        <View
+            android:background="#CCC"
+            android:layout_height="1dp"
+            android:layout_width="fill_parent">
+        </View>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/capture_video"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="14dp"
+            android:text="Capture Video"
+            android:gravity="left"
+            android:background="#FFFFFF"/>
+        <View
+            android:background="#CCC"
+            android:layout_height="1dp"
+            android:layout_width="fill_parent">
+        </View>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/record_audio"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="14dp"
+            android:text="Record Audio"
+            android:gravity="left"
+            android:background="#FFFFFF"/>
+        <View
+            android:background="#CCC"
+            android:layout_height="1dp"
+            android:layout_width="fill_parent">
+        </View>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/provide_link"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="14dp"
+            android:text="Provide Link"
+            android:gravity="left"
+            android:background="#FFFFFF"/>
+        <View
+            android:background="#CCC"
+            android:layout_height="1dp"
+            android:layout_width="fill_parent">
+        </View>
+        </LinearLayout>
