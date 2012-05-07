@@ -14,8 +14,9 @@
             android:paddingBottom="10dp"
             android:paddingTop="14dp"
 	        android:text="Choose Picture"
+	        android:textColor="@color/button_text"
 	        android:gravity="left"
-	        android:background="#FFFFFF"/>
+	        android:background="@color/button_background"/>
         <View
             android:background="#CCC"
             android:layout_height="1dp"
@@ -26,12 +27,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/capture_picture"
             android:text="Capture Picture"
+            android:textColor="@color/button_text"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
             android:paddingTop="14dp"
             android:gravity="left"
-            android:background="#FFFFFF"/>
+            android:background="@color/button_background"/>
         <View
             android:background="#CCC"
             android:layout_height="1dp"
@@ -46,8 +48,9 @@
             android:paddingBottom="10dp"
             android:paddingTop="14dp"
             android:text="Choose Video"
+            android:textColor="@color/button_text"
             android:gravity="left"
-            android:background="#FFFFFF"/>
+            android:background="@color/button_background"/>
         <View
             android:background="#CCC"
             android:layout_height="1dp"
@@ -62,8 +65,9 @@
             android:paddingBottom="10dp"
             android:paddingTop="14dp"
             android:text="Capture Video"
+            android:textColor="@color/button_text"
             android:gravity="left"
-            android:background="#FFFFFF"/>
+            android:background="@color/button_background"/>
         <View
             android:background="#CCC"
             android:layout_height="1dp"
@@ -78,13 +82,15 @@
             android:paddingBottom="10dp"
             android:paddingTop="14dp"
             android:text="Record Audio"
+            android:textColor="@color/button_text"
             android:gravity="left"
-            android:background="#FFFFFF"/>
+            android:background="@color/button_background"/>
         <View
             android:background="#CCC"
             android:layout_height="1dp"
             android:layout_width="fill_parent">
         </View>
+        <!-- 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -94,11 +100,12 @@
             android:paddingBottom="10dp"
             android:paddingTop="14dp"
             android:text="Provide Link"
+            android:textColor="@color/button_text"
             android:gravity="left"
-            android:background="#FFFFFF"/>
+            android:background="@color/button_background"/>
         <View
             android:background="#CCC"
             android:layout_height="1dp"
             android:layout_width="fill_parent">
-        </View>
+        </View> -->
         </LinearLayout>

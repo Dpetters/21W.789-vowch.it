@@ -1,5 +1,10 @@
 package it.vowch.android;
 
+import it.vowch.android.adapters.EvidenceAdapter;
+import it.vowch.android.data.Evidence;
+
+import com.google.gson.Gson;
+
 import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -10,12 +15,27 @@ import android.view.MenuItem;
 
 public class StreamActivity extends ListActivity {
     /** Called when the activity is first created. */
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String json = "["
+                        + "{'user':{'firstName': 'Dmitrij', 'lastName':'Petters', 'username':'dpetters', imageUrl:'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/368918_607193525_243490091_q.jpg'},"
+                        + "'action':'did 10 push-ups before bed.'"
+                        + "}"
+                        + "]";
+        
+        Evidence[] evidence = new Gson().fromJson(json, Evidence[].class);
+        
+    	/** Called when the activity is first created. */
         setContentView(R.layout.stream);
+        
         ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if(actionBar != null){
+        	actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        
+        setListAdapter(new EvidenceAdapter(this, evidence));
     }
 
     @Override
