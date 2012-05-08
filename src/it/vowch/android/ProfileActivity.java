@@ -74,7 +74,6 @@ public class ProfileActivity extends ListActivity {
         	startActivity(new Intent(this, StartActivity.class));
         } 
         
-        
         setContentView(R.layout.profile);
 
         TextView nameView = (TextView) this.findViewById(R.id.name);
@@ -235,6 +234,7 @@ public class ProfileActivity extends ListActivity {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	Log.d("Dmitrij", ((Integer)resultCode).toString());
         if (resultCode == RESULT_OK) {
         	
         	if(evidenceDialog!=null){
