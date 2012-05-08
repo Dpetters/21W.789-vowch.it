@@ -14,12 +14,11 @@ public class Evidence {
 		this.user = user;
 	}
 
-	protected String getAction() {
+	public String getAction() {
 		return action;
 	}
 
 	protected void setAction(String action) {
 		this.action = action;
 	}
-	
 }

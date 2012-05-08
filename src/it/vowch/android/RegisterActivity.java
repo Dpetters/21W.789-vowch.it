@@ -1,8 +1,5 @@
 package it.vowch.android;
 
-import com.parse.Parse;
-import com.parse.ParseObject;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +7,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 
-public class HomeActivity extends Activity {
+import com.parse.Parse;
+import com.parse.ParseObject;
+
+public class RegisterActivity extends Activity {
 
     /** Called when the activity is first created. */
     @Override

@@ -1,10 +1,12 @@
 package it.vowch.android.data;
 
+import android.net.Uri;
+
 public class User {
 	private String username;
 	private String firstName;
 	private String lastName;
-	private String imageUrl;
+	private Uri imageUri;
 	
 	User() {}
 	
@@ -32,11 +34,11 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public Uri getImageUri() {
+		return imageUri;
 	}
 
-	protected void setPath_to_image(String imageUrl) {
-		this.imageUrl = imageUrl;
+	protected void setImageUrl(Uri imageUri) {
+		this.imageUri = imageUri;
 	}
 }

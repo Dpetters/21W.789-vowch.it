@@ -20,7 +20,7 @@ public class StreamActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String json = "["
-                        + "{'user':{'firstName': 'Dmitrij', 'lastName':'Petters', 'username':'dpetters', imageUrl:'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/368918_607193525_243490091_q.jpg'},"
+                        + "{'user':{'firstName': 'Dmitrij', 'lastName':'Petters', 'username':'dpetters', imageUri':'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/368918_607193525_243490091_q.jpg'},"
                         + "'action':'did 10 push-ups before bed.'"
                         + "}"
                         + "]";
