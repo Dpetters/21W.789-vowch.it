@@ -12,7 +12,7 @@
     
     <application
         android:name="it.vowch.android.DefaultApplication"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/launcher_icon"
         android:logo="@drawable/logo"
         android:label="@string/app_name"
         uiOptions="splitActionBarWhenNarrow"
