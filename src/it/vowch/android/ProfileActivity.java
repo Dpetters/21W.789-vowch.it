@@ -25,6 +25,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -34,10 +36,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -48,7 +52,8 @@ import it.vowch.android.adapters.*;
 public class ProfileActivity extends ListActivity {
 	protected Dialog evidenceDialog;
 	protected LinearLayout layout;
-    
+	protected ProgressDialog progressDialog;
+	
     protected boolean click = true;
     protected TextView tv;
     private static final int CHOOSE_PICTURE_REQUEST = 0;
@@ -69,7 +74,10 @@ public class ProfileActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+        /*
+        progressDialog = new ProgressDialog(ProfileActivity.this);
+        progressDialog.show();
+        */
         ParseUser currentUser = ParseUser.getCurrentUser();
 
         setContentView(R.layout.profile);
@@ -98,7 +106,7 @@ public class ProfileActivity extends ListActivity {
 		ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.points_progress);
 		progressBar.setMax(neededPoints);
 		progressBar.setProgress(currentPoints);
-        
+		
 		ParseQuery query = new ParseQuery("Vow");
 		query.whereEqualTo("user", ParseUser.getCurrentUser());
 		query.findInBackground(new FindCallback() {

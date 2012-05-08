@@ -1,27 +1,26 @@
 package it.vowch.android.adapters;
 
+import java.util.List;
+
 import com.parse.ParseObject;
 
 import it.vowch.android.R;
 
 import android.content.Context;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class EvidenceAdapter extends ArrayAdapter<ParseObject> {
 	private final Context context;
-	private final ParseObject[] values;
+	private final List<ParseObject> values;
 
-	public EvidenceAdapter(Context context, ParseObject[] values) {
-		super(context, R.layout.evidence, values);
+	public EvidenceAdapter(Context context, List<ParseObject> evidences) {
+		super(context, R.layout.evidence, evidences);
 		this.context = context;
-		this.values = values;
+		this.values = evidences;
 	}
 
 	@Override
@@ -30,10 +29,11 @@ public class EvidenceAdapter extends ArrayAdapter<ParseObject> {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.evidence, parent, false);
 
-		ParseObject evidence = values[position];
+		ParseObject evidence = values.get(position);
 		
-		//TextView firstNameView = (TextView) rowView.findViewById(R.id.text);
-		//User user = evidence.getUser();
+		TextView firstNameView = (TextView) rowView.findViewById(R.id.text);
+		String text = evidence.getString("text");
+		
 		/*
 		CharSequence sequence = Html.fromSource(context.getString(R.string.clickable_string));
 		SpannableStringBuilder strBuilder = new SpannableStringBuilder(sequence);
