@@ -18,7 +18,7 @@
         android:debuggable="true"
         android:theme="@android:style/Theme.DeviceDefault.Light">
         <activity
-            android:name="it.vowch.android.HomeActivity"
+            android:name="it.vowch.android.LoginActivity"
             android:label="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,4 +40,6 @@
             </intent-filter>
         </activity>
     </application>
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
