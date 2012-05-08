@@ -31,26 +31,9 @@ public class EvidenceAdapter extends ArrayAdapter<ParseObject> {
 
 		ParseObject evidence = values.get(position);
 		
-		TextView firstNameView = (TextView) rowView.findViewById(R.id.text);
-		String text = evidence.getString("text");
-		
-		/*
-		CharSequence sequence = Html.fromSource(context.getString(R.string.clickable_string));
-		SpannableStringBuilder strBuilder = new SpannableStringBuilder(sequence);
-		UnderlineSpan[] underlines = strBuilder.getSpans(UnderlineSpan.class);
-		for(UnderlineSpan span : underlines) {
-		   int start = strBuilder.getSpanStart(span);
-		   int end = strBuilder.getSpanEnd(span);
-		   int flags = strBuilder.getSpanFlags(span);
-		   ClickableSpan myActivityLauncher = new ClickableSpan() {
-		     public void onClick(View view) {
-		       context.startActivity(getIntentForActivityToStart());
-		     }
-		   };
+		final TextView action = (TextView) rowView.findViewById(R.id.action);
 
-		   strBuilder.setSpan(myActivityLauncher, start, end, flags);
-		}
-		*/
+
 		//firstNameView.setText("<a>" + user.getFirstName() + " " + user.getLastName() + "</a> " + evidence.getAction());
 		//firstNameView.setMovementMethod(LinkMovementMethod.getInstance());
 

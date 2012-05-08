@@ -14,14 +14,31 @@
       android:padding="5dp"
       android:textSize="18dp" />
 
+
+    <LinearLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:paddingBottom="4dp">
+		  <TextView
+		    android:id="@+id/schedule"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:paddingLeft="5dp"
+		    android:paddingRight="5dp"
+		    android:paddingBottom="3dp"
+		    android:text="Every week for 10 weeks"/>		  
+		  <TextView
+		    android:id="@+id/occurences_left"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:paddingLeft="5dp"
+		    android:paddingRight="5dp"
+		    android:paddingBottom="3dp"
+		    android:text="(10 occurrences left)"/>
+    </LinearLayout>
   
-  <TextView
-    android:id="@+id/schedule"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingBottom="3dp"/>
     <LinearLayout
       xmlns:android="http://schemas.android.com/apk/res/android"
       android:layout_width="fill_parent"

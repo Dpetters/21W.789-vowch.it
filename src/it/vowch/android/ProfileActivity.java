@@ -1,11 +1,7 @@
 package it.vowch.android;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.util.List;
 import org.json.JSONException;
@@ -26,7 +22,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -36,12 +31,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -74,13 +67,17 @@ public class ProfileActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*
-        progressDialog = new ProgressDialog(ProfileActivity.this);
-        progressDialog.show();
-        */
-        ParseUser currentUser = ParseUser.getCurrentUser();
 
+        /* Check if authenticated */
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser == null) {
+        	startActivity(new Intent(this, StartActivity.class));
+        } 
+        
         setContentView(R.layout.profile);
+
+        TextView nameView = (TextView) this.findViewById(R.id.name);
+        nameView.setText(currentUser.getString("name").toString());
         
         Double exactTotalPoints = currentUser.getDouble("reputationPoints");
         Integer totalPoints = exactTotalPoints.intValue();
@@ -119,47 +116,6 @@ public class ProfileActivity extends ListActivity {
 		    }
 		});
 		
-    	/** Called when the activity is first created. */
-        if (currentUser != null) {
-        	new Thread() {
-        	    public void run() {
-        	      try {
-			        	Bundle args = new Bundle();
-			            args.putString("fields", "name");
-			            JSONObject currentUserJson = null;
-			            try {
-			            	currentUserJson = new JSONObject(ParseFacebookUtils.getFacebook().request("me", args));
-						} catch (MalformedURLException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-			            final String name = currentUserJson.getString("name");
-			            ProfileActivity.this.runOnUiThread(new Runnable()
-	                    {
-	                        @Override
-	                        public void run()
-                            {
-	                    		TextView titleView = (TextView) ProfileActivity.this.findViewById(R.id.name);
-	                        	titleView.setText(name);
-                            }
-	                    });
-
-        	      } catch (Exception e) {
-    	          throw new RuntimeException(e);
-    	        }
-    	      }
-    	    }.start();
-        } else {
-            startActivity(new Intent(this, StartActivity.class));
-        }
-
-        
         ActionBar actionBar = getActionBar();
         if(actionBar != null){
         	actionBar.setDisplayHomeAsUpEnabled(true);
@@ -278,6 +234,7 @@ public class ProfileActivity extends ListActivity {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	Log.d("Dmitrij", ((Integer)resultCode).toString());
         if (resultCode == RESULT_OK) {
         	
         	if(evidenceDialog!=null){
@@ -297,7 +254,9 @@ public class ProfileActivity extends ListActivity {
     			  public void done(ParseException e) {
     			      Log.d("Dmitrij", "Finished");
     	              ParseObject evidence = new ParseObject("Evidence");
-    	              evidence.put("user", ParseUser.getCurrentUser());
+    	              ParseUser currentUser = ParseUser.getCurrentUser();
+    	              
+    	              evidence.put("name", currentUser.getString("name"));
     	              evidence.put("proof", file);
     	              evidence.saveInBackground();
     			  }

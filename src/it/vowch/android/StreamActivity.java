@@ -8,7 +8,6 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import it.vowch.android.adapters.EvidenceAdapter;
-import it.vowch.android.adapters.VowAdapter;
 
 import android.app.ActionBar;
 import android.app.ListActivity;
@@ -18,7 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
+
 
 public class StreamActivity extends ListActivity {
     /** Called when the activity is first created. */
@@ -31,30 +30,27 @@ public class StreamActivity extends ListActivity {
     	/** Called when the activity is first created. */
         setContentView(R.layout.stream);
         
-        TextView footer = (TextView) findViewById(R.id.loadMore);
-        if ( footer != null ) {
-            getListView().addFooterView(footer);
-        } else {
-            throw new NullPointerException("footer is null");
-        }
-        
-        
-        ActionBar actionBar = getActionBar();
-        if(actionBar != null){
-        	actionBar.setDisplayHomeAsUpEnabled(true);
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser == null) {
+        	startActivity(new Intent(this, StartActivity.class));
         }
         
 		ParseQuery query = new ParseQuery("Vow");
 		query.whereEqualTo("user", ParseUser.getCurrentUser());
 		query.findInBackground(new FindCallback() {
-		    public void done(List<ParseObject> evidences, com.parse.ParseException e) {
+		    public void done(List<ParseObject> evidence, com.parse.ParseException e) {
 		        if (e == null) {
-		            setListAdapter(new EvidenceAdapter(StreamActivity.this, evidences));
+		        	setListAdapter(new EvidenceAdapter(StreamActivity.this, evidence));
 		        } else {
 		            Log.d("Dmitrij", "Error: " + e.getMessage());
 		        }
 		    }
 		});
+		
+        ActionBar actionBar = getActionBar();
+        if(actionBar != null){
+        	actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
