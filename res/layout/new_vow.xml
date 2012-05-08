@@ -5,7 +5,7 @@
     android:background="#FFFFFF"
     android:orientation="vertical"
     android:padding="10dp" >
-
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
@@ -15,21 +15,21 @@
         android:text="I vow to"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="45dp" />
-
+
     <EditText
         android:id="@+id/vow_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="enter what you want to do"
+        android:hint="type in what you want to do"
         android:textSize="24dp" />
-
+
 	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_marginTop="10dp"
 	    android:orientation="horizontal" >
-
+
 	    <TextView
 	        android:id="@+id/textView2"
 	        android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginRight="5dp"
-	        android:hint="7"
+	        android:hint="10"
 	        android:inputType="number"
 	        android:maxLength="2"
 	        android:minWidth="75dp"

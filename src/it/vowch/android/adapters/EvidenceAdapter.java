@@ -1,8 +1,8 @@
 package it.vowch.android.adapters;
 
+import com.parse.ParseObject;
+
 import it.vowch.android.R;
-import it.vowch.android.data.Evidence;
-import it.vowch.android.data.User;
 
 import android.content.Context;
 import android.text.Html;
@@ -14,11 +14,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class EvidenceAdapter extends ArrayAdapter<Evidence> {
+public class EvidenceAdapter extends ArrayAdapter<ParseObject> {
 	private final Context context;
-	private final Evidence[] values;
+	private final ParseObject[] values;
 
-	public EvidenceAdapter(Context context, Evidence[] values) {
+	public EvidenceAdapter(Context context, ParseObject[] values) {
 		super(context, R.layout.evidence, values);
 		this.context = context;
 		this.values = values;
@@ -30,10 +30,10 @@ public class EvidenceAdapter extends ArrayAdapter<Evidence> {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.evidence, parent, false);
 
-		Evidence evidence = values[position];
+		ParseObject evidence = values[position];
 		
-		TextView firstNameView = (TextView) rowView.findViewById(R.id.text);
-		User user = evidence.getUser();
+		//TextView firstNameView = (TextView) rowView.findViewById(R.id.text);
+		//User user = evidence.getUser();
 		/*
 		CharSequence sequence = Html.fromSource(context.getString(R.string.clickable_string));
 		SpannableStringBuilder strBuilder = new SpannableStringBuilder(sequence);
@@ -51,8 +51,8 @@ public class EvidenceAdapter extends ArrayAdapter<Evidence> {
 		   strBuilder.setSpan(myActivityLauncher, start, end, flags);
 		}
 		*/
-		firstNameView.setText("<a>" + user.getFirstName() + " " + user.getLastName() + "</a> " + evidence.getAction());
-		firstNameView.setMovementMethod(LinkMovementMethod.getInstance());
+		//firstNameView.setText("<a>" + user.getFirstName() + " " + user.getLastName() + "</a> " + evidence.getAction());
+		//firstNameView.setMovementMethod(LinkMovementMethod.getInstance());
 
 		/*
 		TextView lastNameView = (TextView) rowView.findViewById(R.id.last_name);
@@ -61,8 +61,8 @@ public class EvidenceAdapter extends ArrayAdapter<Evidence> {
 		TextView actionView = (TextView) rowView.findViewById(R.id.action);
 		actionView.setText(evidence.getAction());
 		*/
-		ImageView imageView = (ImageView) rowView.findViewById(R.id.image);
-		imageView.setImageURI(evidence.getUser().getImageUri());
+		//ImageView imageView = (ImageView) rowView.findViewById(R.id.image);
+		//imageView.setImageURI(evidence.getUser().getImageUri());
 		
 		return rowView;
 	}

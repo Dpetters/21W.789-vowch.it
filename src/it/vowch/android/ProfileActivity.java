@@ -1,16 +1,25 @@
 package it.vowch.android;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.ProgressCallback;
+import com.parse.SaveCallback;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -18,6 +27,9 @@ import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -30,6 +42,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import it.vowch.android.adapters.*;
 
 public class ProfileActivity extends ListActivity {
 	protected Dialog evidenceDialog;
@@ -90,7 +104,7 @@ public class ProfileActivity extends ListActivity {
 		query.findInBackground(new FindCallback() {
 		    public void done(List<ParseObject> activeVows, com.parse.ParseException e) {
 		        if (e == null) {
-		        	//setListAdapter(new VowAdapter(this, activeVows));
+		        	setListAdapter(new VowAdapter(ProfileActivity.this, activeVows));
 		        } else {
 		            Log.d("Dmitrij", "Error: " + e.getMessage());
 		        }
@@ -249,14 +263,41 @@ public class ProfileActivity extends ListActivity {
     public void showPreferences(){
     	
     }
-    
+    public byte[] getByteArray(Bitmap bitmap) {
+	    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+	    bitmap.compress(CompressFormat.PNG, 0, bos);
+	    return bos.toByteArray();
+    }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-        	evidenceDialog.dismiss();
-        	if (requestCode == CHOOSE_PICTURE_REQUEST) {
-            	Log.d("Dmitrij", "choose picture");
-            } else if(requestCode == CAPTURE_PICTURE_REQUEST) {
-            	Log.d("Dmitrij", "capture picture");
+        	
+        	if(evidenceDialog!=null){
+        		evidenceDialog.dismiss();
+        	}
+        	
+        	if (requestCode == CHOOSE_PICTURE_REQUEST || requestCode == CAPTURE_PICTURE_REQUEST) {
+        		Uri currImageURI = data.getData();
+        		String pictureFilePath = getRealPathFromUri(this, currImageURI);
+        		Filename pictureFileName = new Filename(pictureFilePath, '/', '.');
+        		Bitmap pictureFileBitmap = BitmapFactory.decodeFile(pictureFilePath);
+        		byte[] buffer = getByteArray(pictureFileBitmap);
+
+        		final ParseFile file = new ParseFile(pictureFileName.filename() + pictureFileName.extension(), buffer);
+        		Log.d("Dmitrij", "about to save file");
+        		file.saveInBackground(new SaveCallback() {
+    			  public void done(ParseException e) {
+    			      Log.d("Dmitrij", "Finished");
+    	              ParseObject evidence = new ParseObject("Evidence");
+    	              evidence.put("user", ParseUser.getCurrentUser());
+    	              evidence.put("proof", file);
+    	              evidence.saveInBackground();
+    			  }
+    			}, new ProgressCallback() {
+    			  public void done(Integer percentDone) {
+    				  Log.d("Dmitrij", percentDone.toString());
+    			  }
+    			});
             } else if(requestCode == CHOOSE_VIDEO_REQUEST) {
             	Log.d("Dmitrij", "choose video");
             } else if(requestCode == CAPTURE_VIDEO_REQUEST) {

@@ -1,7 +1,6 @@
 package it.vowch.android;
 
 import it.vowch.android.adapters.EvidenceAdapter;
-import it.vowch.android.data.Evidence;
 
 import com.google.gson.Gson;
 
@@ -19,13 +18,7 @@ public class StreamActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String json = "["
-                        + "{'user':{'firstName': 'Dmitrij', 'lastName':'Petters', 'username':'dpetters', imageUri':'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/368918_607193525_243490091_q.jpg'},"
-                        + "'action':'did 10 push-ups before bed.'"
-                        + "}"
-                        + "]";
-        
-        Evidence[] evidence = new Gson().fromJson(json, Evidence[].class);
+
         
     	/** Called when the activity is first created. */
         setContentView(R.layout.stream);
@@ -35,7 +28,7 @@ public class StreamActivity extends ListActivity {
         	actionBar.setDisplayHomeAsUpEnabled(true);
         }
         
-        setListAdapter(new EvidenceAdapter(this, evidence));
+        //setListAdapter(new EvidenceAdapter(this, evidence));
     }
 
     @Override
