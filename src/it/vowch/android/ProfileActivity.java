@@ -2,11 +2,14 @@ package it.vowch.android;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-
+import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.parse.FindCallback;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import android.app.ActionBar;
@@ -82,14 +85,25 @@ public class ProfileActivity extends ListActivity {
 		progressBar.setMax(neededPoints);
 		progressBar.setProgress(currentPoints);
         
+		ParseQuery query = new ParseQuery("Vow");
+		query.whereEqualTo("user", ParseUser.getCurrentUser());
+		query.findInBackground(new FindCallback() {
+		    public void done(List<ParseObject> activeVows, com.parse.ParseException e) {
+		        if (e == null) {
+		        	//setListAdapter(new VowAdapter(this, activeVows));
+		        } else {
+		            Log.d("Dmitrij", "Error: " + e.getMessage());
+		        }
+		    }
+		});
+		
     	/** Called when the activity is first created. */
         if (currentUser != null) {
         	new Thread() {
         	    public void run() {
         	      try {
 			        	Bundle args = new Bundle();
-			            args.putString("fields", "id");
-			            args.putString("fields", "name");			            
+			            args.putString("fields", "name");
 			            JSONObject currentUserJson = null;
 			            try {
 			            	currentUserJson = new JSONObject(ParseFacebookUtils.getFacebook().request("me", args));

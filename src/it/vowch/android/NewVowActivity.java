@@ -105,11 +105,16 @@ public class NewVowActivity extends Activity {
     	EditText lengthNumView = (EditText) findViewById(R.id.length_num);
     	Editable lengthNumEditable = lengthNumView.getText();
     	if(lengthNumEditable.length()==0){
-        	vowTextView.setError("Please decide how long you wish to vow for!");
+    		lengthNumView.setError("Please decide how long you wish to vow for!");
         	return;
     	}
     	
-    	ParseObject vow = new ParseObject("vow");
+    	ParseObject vow = new ParseObject("Vow");
+    	vow.put("totalOccurences", 0);
+    	vow.put("successfulOccurences", 0);
+    	vow.put("user", ParseUser.getCurrentUser());
+    	
+    	
     	vow.put("text", vowTextEditable.toString());
     	vow.put("lengthNum", Integer.parseInt(lengthNumEditable.toString()));
     	
