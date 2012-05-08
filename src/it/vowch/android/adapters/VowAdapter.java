@@ -142,7 +142,7 @@ public class VowAdapter extends ArrayAdapter<ParseObject> {
 		}
 		
 		
-		gradeView.setText(grade + " (" + (int) successRate*100 + "%)");
+		gradeView.setText(grade + " (" + ((int) successRate) *100 + "%)");
 		
 		/*
 		TextView timeLeftView = (TextView) rowView.findViewById(R.id.time_left);
