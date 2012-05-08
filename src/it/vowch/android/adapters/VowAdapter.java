@@ -115,8 +115,32 @@ public class VowAdapter extends ArrayAdapter<ParseObject> {
 		if (occurences!=0){
 			successRate = successfulOccurences/occurences;
 		}
-		//TODO Actually get grade based off of successRate
-		String grade = "A+";
+		
+		String grade = "";
+		
+		if (successRate >= .97){
+			grade = "A+";
+		} else if (successRate >= .92){
+			grade = "A";
+		} else if (successRate >= .88){
+			grade = "A-";
+		} else if (successRate >= .82){
+			grade = "B+";
+		} else if (successRate >= .78){
+			grade = "B";
+		} else if (successRate >= .74){
+			grade = "B-";
+		} else if (successRate >= .70){
+			grade = "C+";
+		} else if (successRate >= .65){
+			grade = "C";
+		} else if (successRate >= .6){
+			grade = "C-";
+		} else if (successRate >= .5){
+			grade = "D";
+		} else {grade = "F"; 
+		}
+		
 		gradeView.setText(grade + " (" + successRate*100 + "%)");
 		
 		/*
