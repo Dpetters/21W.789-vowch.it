@@ -5,22 +5,22 @@
     android:orientation="vertical"
     android:gravity="center_horizontal|center_vertical"
     android:background="#EEE" >
-
+
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:src="@drawable/circle_v" />
 
     <ImageButton
-        android:src="@drawable/facebook_login_button"
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
         android:background="@color/button_background"
-        android:layout_marginTop="10dp"
         android:onClick="loginWithFacebook"
-        android:text="Login with Facebook"/>
+        android:src="@drawable/facebook_login_button"
+        android:text="Login with Facebook" />
 
 </LinearLayout>
