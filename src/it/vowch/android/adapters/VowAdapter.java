@@ -24,6 +24,41 @@ public class VowAdapter extends ArrayAdapter<ParseObject> {
 		this.context = context;
 		this.values = values;
 	}
+	
+	public int maxOccurences(ParseObject vow){
+		String s1 = vow.getString("period");
+		String s2 = vow.getString("lengthUnit");
+		int a; int b;
+		if (s1 == "day"){
+			a = 1;
+		}
+		else if (s1 == "week"){
+			a = 7;
+		}
+		else if (s1 == "month"){
+			a = 30;
+		}
+		else if (s1 == "year"){
+			a = 365;
+		}
+		
+		if (s2 == "days"){
+			b = 1;
+		}
+		else if (s2 == "weeks"){
+			b = 7;
+		}
+		else if (s2 == "months"){
+			b = 30;
+		}
+		else if (s2 == "years"){
+			b = 365;
+		}
+		
+		int n = vow.getInt("lengthNum");
+		
+		return (n * b) / a;
+	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -51,7 +86,7 @@ public class VowAdapter extends ArrayAdapter<ParseObject> {
 		
 		ProgressBar progressBar = (ProgressBar) rowView.findViewById(R.id.progress);
 		// TODO - actually compute the maxOccurrences
-		int maxOccurences = 10;
+		int maxOccurences = maxOccurences(vow);
 		progressBar.setMax(maxOccurences);
 		
 		int occurences = vow.getInt("totalOccurences");
