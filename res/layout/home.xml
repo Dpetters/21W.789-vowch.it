@@ -8,42 +8,80 @@
 	<TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="80dp">
+        android:layout_marginTop="50dp">
 
 		<ImageButton
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:background="@color/button_background"
+		    android:background="@null"
 		    android:gravity="center_horizontal"
 		    android:onClick="viewNewVowActivity"
 		    android:src="@drawable/icon_newvow"
 		    android:text="Make a Vow"
-		    android:textColor="#666" />
+		    android:textColor="#666">
+	    </ImageButton>
 
         <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:text="Stream"
             android:gravity="center_horizontal"
-            android:background="@color/button_background"
+            android:background="@null"
             android:textColor="#666"
             android:onClick="viewStreamActivity"
             android:src="@drawable/icon_vowstream">
         </ImageButton>
 	</TableRow>
+	
+	<TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="20dp">
+
+		<TextView
+		    android:id="@+id/textView1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:gravity="center_horizontal"
+		    android:text="New Vow" />
+
+		<TextView
+		    android:id="@+id/textView2"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:gravity="center_horizontal"
+		    android:text="Stream" />
+		
+	</TableRow>
+
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="80dp">
+        android:layout_marginTop="70dp">
         <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:text="Profile"
             android:gravity="center_horizontal"
-            android:background="@color/button_background"
+            android:background="@null"
             android:textColor="#666"
             android:onClick="viewProfileActivity"
             android:src="@drawable/icon_profile">
         </ImageButton>
     </TableRow>
+    
+   	<TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="20dp">
+        
+   	    <TextView
+		    android:id="@+id/textView1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:gravity="center_horizontal"
+		    android:text="Profile" />
+			
+	</TableRow>
+	
 </TableLayout>
