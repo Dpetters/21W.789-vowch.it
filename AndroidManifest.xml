@@ -11,6 +11,7 @@
                       android:smallScreens="true" />
     
     <application
+        android:name="it.vowch.android.DefaultApplication"
         android:icon="@drawable/ic_launcher"
         android:logo="@drawable/logo"
         android:label="@string/app_name"
@@ -18,11 +19,26 @@
         android:debuggable="true"
         android:theme="@android:style/Theme.DeviceDefault.Light">
         <activity
-            android:name="it.vowch.android.HomeActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:name="it.vowch.android.StartActivity"
             android:label="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="it.vowch.android.NewVowActivity"
+            android:label="" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="it.vowch.android.HomeActivity"
+            android:label="" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
@@ -40,5 +56,6 @@
             </intent-filter>
         </activity>
     </application>
+    
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

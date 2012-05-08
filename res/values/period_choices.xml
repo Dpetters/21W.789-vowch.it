@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="period_prompt">Choose a period</string>
+    <string-array name="periods_array">
+        <item>day</item>
+        <item>week</item>
+        <item>month</item>
+        <item>year</item>
+        </string-array>
+</resources>

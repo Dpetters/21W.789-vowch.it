@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="length_unit_prompt">Choose a unit</string>
+    <string-array name="length_unit_array">
+        <item>days</item>
+        <item>weeks</item>
+        <item>months</item>
+        <item>years</item>
+        </string-array>
+</resources>

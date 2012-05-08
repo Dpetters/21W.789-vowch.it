@@ -1,9 +1,13 @@
 package it.vowch.android;
 
-import it.vowch.android.adapters.GoalAdapter;
-import it.vowch.android.data.Goal;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
-import com.google.gson.Gson;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.parse.ParseFacebookUtils;
+import com.parse.ParseUser;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -21,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class ProfileActivity extends ListActivity {
@@ -47,46 +52,86 @@ public class ProfileActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String json = "["
-                        + "{'title' : 'Run 2 miles',"
-                        + "'schedule' : 'Every Monday, Thursday for 2 weeks',"
-                        + "'maxOccurences' : '4',"
-                        + "'occurences' : '3',"
-                        + "'grade' : 'A+',"
-                        + "'successRate' : '100',"
-                        + "'minutesLeft' : '45'"
-                        + "}"
-                        + ","
-                        + "{'title' : 'Have a no-bro day',"
-                        + "'schedule' : 'Every week for 8 months',"
-                        + "'maxOccurences' : '35',"
-                        + "'occurences' : '5',"
-                        + "'grade' : 'B+',"
-                        + "'successRate' : '89',"
-                        + "'minutesLeft' : '1000'"
-                        + "}"
-                        + ","
-                        + "{'title' : 'Do 10 push-ups before going to bed',"
-                        + "'schedule' : 'Every day for a year',"
-                        + "'maxOccurences' : '365',"
-                        + "'occurences' : '167',"
-                        + "'grade' : 'A',"
-                        + "'successRate' : '93',"
-                        + "'minutesLeft' : '456'"
-                        + "}"
-                        + "]";
         
-        Goal[] goals = new Gson().fromJson(json, Goal[].class);
+        ParseUser currentUser = ParseUser.getCurrentUser();
+
+        setContentView(R.layout.profile);
+        
+        Double exactTotalPoints = currentUser.getDouble("reputationPoints");
+        Integer totalPoints = exactTotalPoints.intValue();
+        
+        Double exactLevel = Scoring.getLevel(exactTotalPoints);
+        Integer level = exactLevel.intValue();
+        
+        TextView currentLevelView = (TextView) this.findViewById(R.id.current_level);
+        currentLevelView.setText(level.toString());
+		
+        TextView nextLevelView = (TextView) this.findViewById(R.id.next_level);
+        Integer nextLevel = level+1;
+        nextLevelView.setText(nextLevel.toString());
+		
+        Integer neededPoints = (int) (Scoring.getPoints((double)nextLevel) - Scoring.getPoints((double)level));
+        TextView neededPointsView = (TextView) this.findViewById(R.id.needed_points);
+        neededPointsView.setText(neededPoints.toString());
+        
+        Integer currentPoints = (int) (totalPoints - Scoring.getPoints(level));
+        TextView currentPointsView = (TextView) this.findViewById(R.id.current_points);
+        currentPointsView.setText(currentPoints.toString());
+        
+		ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.points_progress);
+		progressBar.setMax(neededPoints);
+		progressBar.setProgress(currentPoints);
         
     	/** Called when the activity is first created. */
-        setContentView(R.layout.profile);
+        if (currentUser != null) {
+        	new Thread() {
+        	    public void run() {
+        	      try {
+			        	Bundle args = new Bundle();
+			            args.putString("fields", "id");
+			            args.putString("fields", "name");			            
+			            JSONObject currentUserJson = null;
+			            try {
+			            	currentUserJson = new JSONObject(ParseFacebookUtils.getFacebook().request("me", args));
+						} catch (MalformedURLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			            final String name = currentUserJson.getString("name");
+			            ProfileActivity.this.runOnUiThread(new Runnable()
+	                    {
+	                        @Override
+	                        public void run()
+                            {
+	                    		TextView titleView = (TextView) ProfileActivity.this.findViewById(R.id.name);
+	                        	titleView.setText(name);
+                            }
+	                    });
+
+        	      } catch (Exception e) {
+    	          throw new RuntimeException(e);
+    	        }
+    	      }
+    	    }.start();
+        } else {
+            startActivity(new Intent(this, StartActivity.class));
+        }
+
         
         ActionBar actionBar = getActionBar();
         if(actionBar != null){
         	actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        
-        setListAdapter(new GoalAdapter(this, goals));
+    }
+
+    public void viewNewVowActivity(MenuItem menuItem){
+		startActivity(new Intent(this, NewVowActivity.class));
     }
     
     public void showEvidenceDialog(View view){
@@ -183,7 +228,8 @@ public class ProfileActivity extends ListActivity {
     }
     
     public void logout(){
-    	
+    	ParseUser.logOut();
+    	startActivity(new Intent(this, StartActivity.class));
     }
 
     public void showPreferences(){
