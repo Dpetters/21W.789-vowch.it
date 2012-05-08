@@ -9,37 +9,41 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="80dp">
-		<Button
+
+		<ImageButton
 		    android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-		    android:text="Make a Vow"
+		    android:layout_height="fill_parent"
+		    android:background="@color/button_background"
 		    android:gravity="center_horizontal"
-		    android:background="#FAFAFA"
-		    android:textColor="#666"
-		    android:onClick="viewNewVowActivity">
-		</Button>
-        <Button
+		    android:onClick="viewNewVowActivity"
+		    android:src="@drawable/icon_newvow"
+		    android:text="Make a Vow"
+		    android:textColor="#666" />
+
+        <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:text="Stream"
             android:gravity="center_horizontal"
-            android:background="#FAFAFA"
+            android:background="@color/button_background"
             android:textColor="#666"
-            android:onClick="viewStreamActivity">
-        </Button>
+            android:onClick="viewStreamActivity"
+            android:src="@drawable/icon_vowstream">
+        </ImageButton>
 	</TableRow>
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="80dp">
-        <Button
+        <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:text="Profile"
             android:gravity="center_horizontal"
-            android:background="#FAFAFA"
+            android:background="@color/button_background"
             android:textColor="#666"
-            android:onClick="viewProfileActivity">
-        </Button>
+            android:onClick="viewProfileActivity"
+            android:src="@drawable/icon_profile">
+        </ImageButton>
     </TableRow>
 </TableLayout>
