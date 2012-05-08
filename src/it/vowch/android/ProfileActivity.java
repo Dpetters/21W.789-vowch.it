@@ -57,6 +57,7 @@ public class ProfileActivity extends ListActivity {
     //private static final int PROVIDE_LINK_REQUEST = 5;
     
     public static String getRealPathFromUri(Activity activity, Uri contentUri) {
+    	Log.d("Dmitrij", contentUri.toString());
         String[] proj = { MediaStore.Images.Media.DATA };
         Cursor cursor = activity.managedQuery(contentUri, proj, null, null, null);
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
@@ -234,7 +235,6 @@ public class ProfileActivity extends ListActivity {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	Log.d("Dmitrij", ((Integer)resultCode).toString());
         if (resultCode == RESULT_OK) {
         	
         	if(evidenceDialog!=null){
@@ -248,11 +248,9 @@ public class ProfileActivity extends ListActivity {
         		Bitmap pictureFileBitmap = BitmapFactory.decodeFile(pictureFilePath);
         		byte[] buffer = getByteArray(pictureFileBitmap);
 
-        		final ParseFile file = new ParseFile(pictureFileName.filename() + pictureFileName.extension(), buffer);
-        		Log.d("Dmitrij", "about to save file");
+        		final ParseFile file = new ParseFile(pictureFileName.filename() + "." + pictureFileName.extension(), buffer);
         		file.saveInBackground(new SaveCallback() {
     			  public void done(ParseException e) {
-    			      Log.d("Dmitrij", "Finished");
     	              ParseObject evidence = new ParseObject("Evidence");
     	              ParseUser currentUser = ParseUser.getCurrentUser();
     	              
@@ -262,7 +260,7 @@ public class ProfileActivity extends ListActivity {
     			  }
     			}, new ProgressCallback() {
     			  public void done(Integer percentDone) {
-    				  Log.d("Dmitrij", percentDone.toString());
+    				  
     			  }
     			});
             } else if(requestCode == CHOOSE_VIDEO_REQUEST) {
@@ -272,12 +270,10 @@ public class ProfileActivity extends ListActivity {
             } else if(requestCode == RECORD_AUDIO_REQUEST) {
             	Log.d("Dmitrij", "record audio");
             }
-        	/*
-        	Uri filePathFromActivity = (Uri) extras.get(Intent.EXTRA_STREAM);
-        	filePathFromActivity = Uri.parse(getRealPathFromUri( (Activity) ProfileActivity.this, filePathFromActivity));
-        	File imageFile = new File(filePathFromActivity.getPath());
-        	Log.d("Dmitrij", imageFile.toString());
-        	*/
+        }else{
+        	if(evidenceDialog!=null){
+        		evidenceDialog.dismiss();
+        	}
         }
     }
 }

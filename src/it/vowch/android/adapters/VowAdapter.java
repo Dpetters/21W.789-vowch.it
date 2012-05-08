@@ -97,7 +97,7 @@ public class VowAdapter extends ArrayAdapter<ParseObject> {
 		progressBar.setProgress(occurences);
 
 		TextView occurencesLeftView = (TextView) rowView.findViewById(R.id.occurences_left);
-		titleView.setText(((Integer)(maxOccurences-occurences)).toString());
+		occurencesLeftView.setText(((Integer)(maxOccurences-occurences)).toString());
 		
 		TextView completionPercentageView = (TextView) rowView.findViewById(R.id.completion_percentage);
 		Integer completionPercentage = (int) ((double)occurences/maxOccurences*100);
