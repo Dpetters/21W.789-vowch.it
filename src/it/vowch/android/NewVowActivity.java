@@ -117,8 +117,6 @@ public class NewVowActivity extends Activity {
     	ParseObject vow = new ParseObject("Vow");
     	vow.put("totalOccurences", 0);
     	vow.put("successfulOccurences", 0);
-    	vow.put("user", ParseUser.getCurrentUser());
-    	
     	
     	vow.put("text", vowTextEditable.toString());
     	vow.put("lengthNum", Integer.parseInt(lengthNumEditable.toString()));
