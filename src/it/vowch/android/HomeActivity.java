@@ -1,12 +1,11 @@
 package it.vowch.android;
 
-import com.parse.Parse;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,10 +18,11 @@ public class HomeActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-        Parse.initialize(this, "DXxAwRJUW4EqeBcikp1z3xSkA6115g0AAdqvwh6T", "WqhAAGDu4uDODZ7tbAWQtDkyVaPccbwm0syyzrSA");
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser == null) {
+        	startActivity(new Intent(this, StartActivity.class));
+        } 
     }
 
     @Override

@@ -42,6 +42,11 @@ public class NewVowActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.new_vow);
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser == null) {
+        	startActivity(new Intent(this, StartActivity.class));
+        } 
         
         periodSpinner = (Spinner) findViewById(R.id.period);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.periods_array, R.layout.new_vow_spinner_layout);
