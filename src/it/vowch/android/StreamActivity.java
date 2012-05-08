@@ -2,8 +2,6 @@ package it.vowch.android;
 
 import it.vowch.android.adapters.EvidenceAdapter;
 
-import com.google.gson.Gson;
-
 import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Intent;
