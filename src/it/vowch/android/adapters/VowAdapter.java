@@ -28,7 +28,9 @@ public class VowAdapter extends ArrayAdapter<ParseObject> {
 	public int maxOccurences(ParseObject vow){
 		String s1 = vow.getString("period");
 		String s2 = vow.getString("lengthUnit");
-		int a; int b;
+		int a=1;
+		int b=1;
+		
 		if (s1 == "day"){
 			a = 1;
 		}
@@ -88,10 +90,14 @@ public class VowAdapter extends ArrayAdapter<ParseObject> {
 		// TODO - actually compute the maxOccurrences
 		int maxOccurences = maxOccurences(vow);
 		progressBar.setMax(maxOccurences);
+
+
 		
 		int occurences = vow.getInt("totalOccurences");
 		progressBar.setProgress(occurences);
 
+		TextView occurencesLeftView = (TextView) rowView.findViewById(R.id.occurences_left);
+		titleView.setText(((Integer)(maxOccurences-occurences)).toString());
 		
 		TextView completionPercentageView = (TextView) rowView.findViewById(R.id.completion_percentage);
 		Integer completionPercentage = (int) ((double)occurences/maxOccurences*100);
